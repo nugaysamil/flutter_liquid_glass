@@ -1,0 +1,25 @@
+name: flutter_liquid_glass
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  liquid_glass_renderer: ^0.2.0-dev.4
+  motor: ^1.1.0
+  
+  
+
+dev_dependencies:
+  alchemist: ^0.13.0
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  mocktail: ^1.0.4
+
+flutter:
