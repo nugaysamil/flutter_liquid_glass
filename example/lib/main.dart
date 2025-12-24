@@ -70,7 +70,7 @@ class ExamplePage extends StatelessWidget {
                   const SizedBox(height: 16),
                   
                   // Basic GlassCard
-                  const GlassCard(
+                  const LiquidGlassCard(
                     quality: LiquidGlassQuality.premium,
                     margin: const EdgeInsets.only(bottom: 16),
                     child: const ListTile(
@@ -84,7 +84,7 @@ class ExamplePage extends StatelessWidget {
                 
                   
                   // GlassCard with custom shape
-                 const GlassCard(
+                  const LiquidGlassCard(
                     shape: LiquidRoundedRectangle(borderRadius: 8),
                     margin:  EdgeInsets.only(bottom: 40),
                     child:  ListTile(

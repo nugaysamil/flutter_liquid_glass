@@ -6,8 +6,8 @@ import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 /// Glass card widget with iOS-style design defaults.
 ///
 /// Provides card styling with default padding and rounded corners.
-class GlassCard extends StatelessWidget {
-  const GlassCard({
+class LiquidGlassCard extends StatelessWidget {
+  const LiquidGlassCard({
     super.key,
     this.child,
     this.padding = const EdgeInsets.all(16),
