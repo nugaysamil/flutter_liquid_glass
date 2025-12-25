@@ -676,7 +676,7 @@ class _LiquidGlassBottomBarState extends State<LiquidGlassBottomBar> {
           child: Container(
             height: widget.barHeight,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Container(
+            child: SizedBox(
               height: 1,
               child: LiquidGlassTextField(
                 controller: _searchController,
@@ -1059,34 +1059,34 @@ class _ExtraButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (config.iconWidget != null) {
       return LiquidGlassButton.custom(
-        child: config.iconWidget!,
         onTap: config.onTap,
         label: config.label,
         width: config.size,
         height: config.size,
         quality: quality,
+        child: config.iconWidget!,
       );
     }
 
     if (config.icon == null) {
       return LiquidGlassButton.custom(
-        child: null,
         onTap: config.onTap,
         label: config.label,
         width: config.size,
         height: config.size,
         quality: quality,
+        child: null,
       );
     }
 
     if (config.icon is Widget) {
       return LiquidGlassButton.custom(
-        child: config.icon as Widget,
         onTap: config.onTap,
         label: config.label,
         width: config.size,
         height: config.size,
         quality: quality,
+        child: config.icon as Widget,
       );
     } else if (config.icon is IconData) {
       return LiquidGlassButton(
@@ -1100,12 +1100,12 @@ class _ExtraButton extends StatelessWidget {
     }
 
     return LiquidGlassButton.custom(
-      child: const SizedBox(),
       onTap: config.onTap,
       label: config.label,
       width: config.size,
       height: config.size,
       quality: quality,
+      child: const SizedBox(),
     );
   }
 }

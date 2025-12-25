@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_liquid_glass/flutter_liquid_glass.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,13 +69,13 @@ class _ExamplePageState extends State<ExamplePage> {
                 bottom: 0,
                 child: LiquidGlassBottomBar(
                   tabs: [
-                    LiquidGlassBottomBarTab(
+                    const LiquidGlassBottomBarTab(
                       label: 'Home',
                       icon: CupertinoIcons.house,
                       selectedIcon: CupertinoIcons.house_fill,
                       glowColor: Colors.white70,
                     ),
-                    LiquidGlassBottomBarTab(
+                    const LiquidGlassBottomBarTab(
                       label: 'Search',
                       icon: CupertinoIcons.search,
                       selectedIcon: CupertinoIcons.search,
@@ -86,9 +85,9 @@ class _ExamplePageState extends State<ExamplePage> {
                       label: 'Favorites',
                       icon: CupertinoIcons.heart,
                       selectedIcon: CupertinoIcons.heart_fill,
-                      glowColor: Colors.white.withOpacity(0.8),
+                      glowColor: Colors.white.withValues(alpha: 0.8),
                     ),
-                    LiquidGlassBottomBarTab(
+                    const LiquidGlassBottomBarTab(
                       label: 'Profile',
                       icon: CupertinoIcons.person,
                       selectedIcon: CupertinoIcons.person_fill,
@@ -148,14 +147,14 @@ class HomePage extends StatelessWidget {
               'Discover beautiful glass effects',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 40),
-            LiquidGlassCard(
+            const LiquidGlassCard(
               quality: LiquidGlassQuality.premium,
-              margin: const EdgeInsets.only(bottom: 20),
-              child: const Column(
+              margin: EdgeInsets.only(bottom: 20),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(Icons.star, color: Colors.white, size: 32),
@@ -176,10 +175,10 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            LiquidGlassCard(
+            const LiquidGlassCard(
               quality: LiquidGlassQuality.standard,
-              margin: const EdgeInsets.only(bottom: 20),
-              child: const Column(
+              margin: EdgeInsets.only(bottom: 20),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(Icons.speed, color: Colors.white, size: 32),
@@ -200,14 +199,14 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            LiquidGlassContainer(
+            const LiquidGlassContainer(
               useOwnLayer: true,
-              settings: const LiquidGlassSettings(
+              settings: LiquidGlassSettings(
                 thickness: 20,
                 blur: 10,
               ),
-              padding: const EdgeInsets.all(20),
-              child: const Column(
+              padding: EdgeInsets.all(20),
+              child: Column(
                 children: [
                   Icon(Icons.layers, color: Colors.white, size: 32),
                   SizedBox(height: 8),
@@ -262,7 +261,7 @@ class SearchPage extends StatelessWidget {
               prefixIcon: Icon(
                 CupertinoIcons.search,
                 size: 20,
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 30),
@@ -272,7 +271,7 @@ class SearchPage extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 16),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.white.withValues(alpha: 0.2),
                     child: const Icon(
                       CupertinoIcons.music_note,
                       color: Colors.white,
@@ -284,7 +283,8 @@ class SearchPage extends StatelessWidget {
                   ),
                   subtitle: Text(
                     'Tap to view details',
-                    style: TextStyle(color: Colors.white.withOpacity(0.7)),
+                    style:
+                        TextStyle(color: Colors.white.withValues(alpha: 0.7)),
                   ),
                 ),
               ),
@@ -322,7 +322,7 @@ class FavoritesPage extends StatelessWidget {
               'Your saved items',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 30),
@@ -383,7 +383,7 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.white.withValues(alpha: 0.2),
                     child: const Icon(
                       CupertinoIcons.person_fill,
                       size: 50,
@@ -404,7 +404,7 @@ class ProfilePage extends StatelessWidget {
                     'john.doe@example.com',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                     ),
                   ),
                 ],
@@ -424,7 +424,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 trailing: Icon(
                   CupertinoIcons.chevron_right,
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                 ),
               ),
             ),
@@ -441,7 +441,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 trailing: Icon(
                   CupertinoIcons.chevron_right,
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                 ),
               ),
             ),
@@ -458,7 +458,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 trailing: Icon(
                   CupertinoIcons.chevron_right,
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                 ),
               ),
             ),
