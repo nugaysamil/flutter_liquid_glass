@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/components/box/liquid_glass_container.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import 'liquid_glass_container.dart';
+import '../../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 /// Glass card widget with iOS-style design defaults.
 ///
 /// Provides card styling with default padding and rounded corners.
-class LiquidGlassCard extends StatelessWidget {
-  const LiquidGlassCard({
+class LGCard extends StatelessWidget {
+  const LGCard({
     super.key,
     this.child,
     this.padding = const EdgeInsets.all(16),
@@ -15,7 +15,7 @@ class LiquidGlassCard extends StatelessWidget {
     this.shape = _defaultShape,
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.clipBehavior = Clip.none,
     this.width,
     this.height,
@@ -48,14 +48,14 @@ class LiquidGlassCard extends StatelessWidget {
   final bool useOwnLayer;
 
   /// Rendering quality for the glass effect.
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
 
   /// Content clipping behavior.
   final Clip clipBehavior;
 
   @override
   Widget build(BuildContext context) {
-    return LiquidGlassContainer(
+    return LGContainer(
       width: width,
       height: height,
       padding: padding,

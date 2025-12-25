@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
-import 'package:flutter_liquid_glass/shared/liquid_glass_indicator.dart';
-import 'package:flutter_liquid_glass/utils/indicator_physics.dart';
+import '../enum/liquid_glass_quality.dart';
+import '../shared/liquid_glass_indicator.dart';
+import '../utils/indicator_physics.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:motor/motor.dart';
 
 
 /// A beautiful glass morphism tab bar following Apple's iOS design patterns.
 ///
-/// [LiquidGlassTabBar] provides a horizontal tab navigation bar with glass effect,
+/// [LGTabBar] provides a horizontal tab navigation bar with glass effect,
 /// smooth animations, draggable indicator, and jelly physics. Swipe between tabs
 /// with organic motion, or tap to select. Supports icons, labels, or both, with
 /// scrollable support for many tabs.
-class LiquidGlassTabBar extends StatefulWidget {
+class LGTabBar extends StatefulWidget {
   /// Creates a glass tab bar.
-  const LiquidGlassTabBar({
+  const LGTabBar({
     required this.tabs,
     required this.selectedIndex,
     required this.onTabSelected,
@@ -32,18 +32,18 @@ class LiquidGlassTabBar extends StatefulWidget {
     this.backgroundColor = Colors.transparent,
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.borderRadius,
     this.indicatorBorderRadius,
     this.indicatorSettings,
-  })  : assert(tabs.length >= 2, 'LiquidGlassTabBar requires at least 2 tabs'),
+  })  : assert(tabs.length >= 2, 'LGTabBar requires at least 2 tabs'),
         assert(
           selectedIndex >= 0 && selectedIndex < tabs.length,
           'selectedIndex must be within bounds of tabs list',
         );
 
   /// List of tabs to display.
-  final List<LiquidGlassTab> tabs;
+  final List<LGTab> tabs;
 
   /// Index of the currently selected tab.
   final int selectedIndex;
@@ -94,7 +94,7 @@ class LiquidGlassTabBar extends StatefulWidget {
   final bool useOwnLayer;
 
   /// Rendering quality for the glass effect.
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
 
   /// BorderRadius of the tab bar.
   final BorderRadius? borderRadius;
@@ -106,10 +106,10 @@ class LiquidGlassTabBar extends StatefulWidget {
   final LiquidGlassSettings? indicatorSettings;
 
   @override
-  State<LiquidGlassTabBar> createState() => _LiquidGlassTabBarState();
+  State<LGTabBar> createState() => _LGTabBarState();
 }
 
-class _LiquidGlassTabBarState extends State<LiquidGlassTabBar> {
+class _LGTabBarState extends State<LGTabBar> {
   static const _defaultBackgroundColor = Color(0x1FFFFFFF);
 
   final ScrollController _scrollController = ScrollController();
@@ -121,7 +121,7 @@ class _LiquidGlassTabBarState extends State<LiquidGlassTabBar> {
   }
 
   @override
-  void didUpdateWidget(LiquidGlassTabBar oldWidget) {
+  void didUpdateWidget(LGTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.isScrollable &&
@@ -223,7 +223,7 @@ class _TabBarContent extends StatefulWidget {
     this.indicatorSettings,
   });
 
-  final List<LiquidGlassTab> tabs;
+  final List<LGTab> tabs;
   final int selectedIndex;
   final ValueChanged<int> onTabSelected;
   final bool isScrollable;
@@ -235,7 +235,7 @@ class _TabBarContent extends StatefulWidget {
   final Color? unselectedIconColor;
   final double iconSize;
   final EdgeInsetsGeometry labelPadding;
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
   final BorderRadius? indicatorBorderRadius;
   final LiquidGlassSettings? indicatorSettings;
 
@@ -397,7 +397,7 @@ class _TabBarContentState extends State<_TabBarContent> {
                 clipBehavior: Clip.none,
                 children: [
                   if (thickness < 1)
-                    LiquidGlassIndicator(
+                    LGIndicator(
                       velocity: velocity,
                       itemCount: widget.tabs.length,
                       alignment: alignment,
@@ -410,7 +410,7 @@ class _TabBarContentState extends State<_TabBarContent> {
                       glassSettings: widget.indicatorSettings,
                     ),
                   if (thickness > 0)
-                    LiquidGlassIndicator(
+                    LGIndicator(
                       velocity: velocity,
                       itemCount: widget.tabs.length,
                       alignment: alignment,
@@ -488,7 +488,7 @@ class _TabItem extends StatelessWidget {
     required this.padding,
   });
 
-  final LiquidGlassTab tab;
+  final LGTab tab;
   final bool isSelected;
   final VoidCallback onTap;
   final TextStyle labelStyle;
@@ -557,16 +557,16 @@ class _TabItem extends StatelessWidget {
   }
 }
 
-/// Configuration for a tab in [LiquidGlassTabBar].
-class LiquidGlassTab {
+/// Configuration for a tab in [LGTabBar].
+class LGTab {
   /// Creates a tab configuration.
-  const LiquidGlassTab({
+  const LGTab({
     this.icon,
     this.label,
     this.semanticLabel,
   }) : assert(
           icon != null || label != null,
-          'LiquidGlassTab must have either an icon or label',
+          'LGTab must have either an icon or label',
         );
 
   /// Icon to display in the tab.

@@ -2,7 +2,7 @@
 ///
 /// Defines the visual rendering approach for liquid glass effects,
 /// offering trade-offs between appearance quality and system performance.
-enum LiquidGlassQuality {
+enum LGQuality {
   /// Standard backdrop filter implementation.
   ///
   /// **Ideal scenarios:**
@@ -38,17 +38,17 @@ enum LiquidGlassQuality {
   premium,
 }
 
-/// Extension methods for [Style] enum configuration.
-extension LiquidGlassQualityExtension on LiquidGlassQuality {
+/// Extension methods for [LGQuality] enum configuration.
+extension LGQualityExtension on LGQuality {
   /// Indicates if backdrop filter rendering should be applied.
   ///
-  /// - [Style.standard] → true (backdrop filter enabled)
-  /// - [Style.premium] → false (shader rendering enabled)
+  /// - [LGQuality.standard] → true (backdrop filter enabled)
+  /// - [LGQuality.premium] → false (shader rendering enabled)
   bool get usesBackdropFilter {
     switch (this) {
-      case LiquidGlassQuality.standard:
+      case LGQuality.standard:
         return true;
-      case LiquidGlassQuality.premium:
+      case LGQuality.premium:
         return false;
     }
   }

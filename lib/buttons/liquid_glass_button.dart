@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_button_style.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../enum/liquid_button_style.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 
 /// A beautiful glass morphism button with organic animations and touch effects.
 ///
-/// [LiquidGlassButton] brings your UI to life with liquid glass visuals,
+/// [LGButton] brings your UI to life with liquid glass visuals,
 /// satisfying squash and stretch animations, and responsive glow effects that
 /// react to touch. The button can work in grouped mode (sharing glass settings
 /// with other elements) or standalone mode (with its own independent glass layer).
-/// Supports both icon buttons and custom content through the [LiquidGlassButton.custom]
+/// Supports both icon buttons and custom content through the [LGButton.custom]
 /// constructor.
-class LiquidGlassButton extends StatelessWidget {
+class LGButton extends StatelessWidget {
   /// Creates a glass button with an icon.
-  const LiquidGlassButton({
+  const LGButton({
     required this.icon,
     required this.onTap,
     super.key,
@@ -26,7 +26,7 @@ class LiquidGlassButton extends StatelessWidget {
     this.shape = const LiquidOval(),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.interactionScale = 1.05,
     this.stretch = 0.5,
     this.resistance = 0.08,
@@ -35,14 +35,14 @@ class LiquidGlassButton extends StatelessWidget {
     this.glowRadius = 1.0,
     this.glowHitTestBehavior = HitTestBehavior.opaque,
     this.enabled = true,
-    this.style = LiquidButtonStyle.filled,
+    this.style = LGButtonStyle.filled,
   }) : child = null;
 
   /// Creates a glass button with custom content.
   ///
   /// Allows you to use any widget as the button's content instead of just an icon.
   /// Useful for text buttons, composite content, or custom designs.
-  const LiquidGlassButton.custom({
+  const LGButton.custom({
     required this.child,
     required this.onTap,
     super.key,
@@ -52,7 +52,7 @@ class LiquidGlassButton extends StatelessWidget {
     this.shape = const LiquidOval(),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.interactionScale = 1.05,
     this.stretch = 0.5,
     this.resistance = 0.08,
@@ -61,7 +61,7 @@ class LiquidGlassButton extends StatelessWidget {
     this.glowRadius = 1.0,
     this.glowHitTestBehavior = HitTestBehavior.opaque,
     this.enabled = true,
-    this.style = LiquidButtonStyle.filled,
+    this.style = LGButtonStyle.filled,
   })  : icon = null,
         iconSize = 24.0,
         iconColor = Colors.white;
@@ -77,7 +77,7 @@ class LiquidGlassButton extends StatelessWidget {
 
   /// Custom widget to display in the button.
   ///
-  /// Mutually exclusive with [icon]. Use [LiquidGlassButton.custom] constructor.
+  /// Mutually exclusive with [icon]. Use [LGButton.custom] constructor.
   final Widget? child;
 
   /// Size of the icon (only used when [icon] is provided).
@@ -157,16 +157,16 @@ class LiquidGlassButton extends StatelessWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [LiquidGlassQuality.standard], which uses backdrop filter rendering.
+  /// Defaults to [LGQuality.standard], which uses backdrop filter rendering.
   /// Works reliably in all contexts, including scrollable lists. Use
-  /// [LiquidGlassQuality.premium] for shader-based glass in static layouts only.
-  final LiquidGlassQuality quality;
+  /// [LGQuality.premium] for shader-based glass in static layouts only.
+  final LGQuality quality;
 
   /// The visual style of the button.
   ///
-  /// Use [LiquidButtonStyle.transparent] when grouping buttons to avoid
+  /// Use [LGButtonStyle.transparent] when grouping buttons to avoid
   /// double-drawing glass backgrounds.
-  final LiquidButtonStyle style;
+  final LGButtonStyle style;
 
   // ===========================================================================
   // LiquidStretch Properties (Animation & Interaction)
@@ -269,7 +269,7 @@ class LiquidGlassButton extends StatelessWidget {
 
     Widget glassWidget;
 
-    if (style == LiquidButtonStyle.transparent) {
+    if (style == LGButtonStyle.transparent) {
       glassWidget = GlassGlow(
         glowColor: glowColor,
         glowRadius: glowRadius,

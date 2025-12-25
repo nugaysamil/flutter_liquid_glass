@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 /// Base glass container widget with configurable dimensions and styling.
-class LiquidGlassContainer extends StatelessWidget {
-  const LiquidGlassContainer({
+class LGContainer extends StatelessWidget {
+  const LGContainer({
     super.key,
     this.child,
     this.width,
@@ -14,7 +14,7 @@ class LiquidGlassContainer extends StatelessWidget {
     this.shape = const LiquidRoundedSuperellipse(borderRadius: 16),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.clipBehavior = Clip.none,
     this.alignment,
   });
@@ -47,7 +47,7 @@ class LiquidGlassContainer extends StatelessWidget {
   final bool useOwnLayer;
 
   /// Rendering quality for the glass effect.
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
 
   /// Content clipping behavior.
   final Clip clipBehavior;

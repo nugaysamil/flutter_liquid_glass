@@ -4,11 +4,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/buttons/liquid_glass_button.dart';
-import 'package:flutter_liquid_glass/entry/liquid_glass_text_field.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
-import 'package:flutter_liquid_glass/shared/liquid_glass_indicator.dart';
-import 'package:flutter_liquid_glass/utils/indicator_physics.dart';
+import '../buttons/liquid_glass_button.dart';
+import '../entry/liquid_glass_text_field.dart';
+import '../enum/liquid_glass_quality.dart';
+import '../shared/liquid_glass_indicator.dart';
+import '../utils/indicator_physics.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:motor/motor.dart';
 
@@ -16,7 +16,7 @@ import 'package:motor/motor.dart';
 
 /// A beautiful glass morphism bottom navigation bar inspired by Apple's design language.
 ///
-/// [LiquidGlassBottomBar] brings the elegance of iOS navigation to Flutter with
+/// [LGBottomBar] brings the elegance of iOS navigation to Flutter with
 /// a stunning liquid glass effect. Swipe between tabs with a draggable indicator
 /// that responds naturally to your touch, complete with spring physics and
 /// organic animations that feel alive.
@@ -26,9 +26,9 @@ import 'package:motor/motor.dart';
 /// seamlessly when activated, while extra buttons can be added for primary
 /// actions. Everything blends together beautifully using [LiquidGlassBlendGroup]
 /// for that premium, cohesive look.
-class LiquidGlassBottomBar extends StatefulWidget {
+class LGBottomBar extends StatefulWidget {
   /// Creates a glass bottom navigation bar.
-  const LiquidGlassBottomBar({
+  const LGBottomBar({
     required this.tabs,
     required this.selectedIndex,
     required this.onTabSelected,
@@ -55,7 +55,7 @@ class LiquidGlassBottomBar extends StatefulWidget {
     this.glowBlurRadius = 32,
     this.glowSpreadRadius = 8,
     this.glowOpacity = 0.6,
-    this.quality = LiquidGlassQuality.premium,
+    this.quality = LGQuality.premium,
     this.isSearch = false,
     this.searchTab,
     this.onSearchTap,
@@ -74,7 +74,7 @@ class LiquidGlassBottomBar extends StatefulWidget {
   /// Each tab requires a label and icon. Optionally specify a selectedIcon
   /// for a different appearance when selected, and a glowColor for the
   /// animated glow effect.
-  final List<LiquidGlassBottomBarTab> tabs;
+  final List<LGBottomBarTab> tabs;
 
   /// Index of the currently selected tab.
   ///
@@ -90,8 +90,8 @@ class LiquidGlassBottomBar extends StatefulWidget {
   /// Optional extra button displayed to the right of the tab bar.
   ///
   /// Typically used for a primary action like "Create", "Add", or "Compose".
-  /// The button is rendered as a [GlassButton] and inherits the glass settings.
-  final GlassBottomBarExtraButton? extraButton;
+  /// The button is rendered as a [LGButton] and inherits the glass settings.
+  final LGBottomBarExtraButton? extraButton;
 
 
   /// Spacing between the tab bar and extra button.
@@ -151,12 +151,12 @@ class LiquidGlassBottomBar extends StatefulWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [GlassQuality.premium] since bottom bars are typically static
+  /// Defaults to [LGQuality.premium] since bottom bars are typically static
   /// surfaces at the bottom of the screen where premium quality looks best.
   ///
-  /// Use [GlassQuality.standard] if the bottom bar will be used in a scrollable
+  /// Use [LGQuality.standard] if the bottom bar will be used in a scrollable
   /// context.
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
 
 
   /// Whether to show the draggable indicator.
@@ -255,7 +255,7 @@ class LiquidGlassBottomBar extends StatefulWidget {
   /// Configuration for the search tab.
   ///
   /// Only used when [isSearch] is true. If null, a default search tab will be used.
-  final LiquidGlassBottomBarTab? searchTab;
+  final LGBottomBarTab? searchTab;
 
   /// Callback when the search tab is tapped.
   ///
@@ -298,10 +298,10 @@ class LiquidGlassBottomBar extends StatefulWidget {
   final TextStyle? searchPlaceholderStyle;
 
   @override
-  State<LiquidGlassBottomBar> createState() => _LiquidGlassBottomBarState();
+  State<LGBottomBar> createState() => _LGBottomBarState();
 }
 
-class _LiquidGlassBottomBarState extends State<LiquidGlassBottomBar> {
+class _LGBottomBarState extends State<LGBottomBar> {
   static const _defaultGlassColor = Color(0x3DFFFFFF);
   static const _defaultLightAngle = 0.7853981633974483;
   static const _defaultGlassSettings = LiquidGlassSettings(
@@ -678,7 +678,7 @@ class _LiquidGlassBottomBarState extends State<LiquidGlassBottomBar> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: SizedBox(
               height: 1,
-              child: LiquidGlassTextField(
+              child: LGTextField(
                 controller: _searchController,
                 focusNode: _searchFocusNode,
                 onChanged: widget.onSearchChanged,
@@ -704,7 +704,7 @@ class _LiquidGlassBottomBarState extends State<LiquidGlassBottomBar> {
   }
 }
 
-/// Configuration for a tab in [LiquidGlassBottomBar].
+/// Configuration for a tab in [LGBottomBar].
 ///
 /// Each tab displays an icon and label. Optionally provide a different icon
 /// for the selected state and a glow color for the selection animation.
@@ -712,13 +712,13 @@ class _LiquidGlassBottomBarState extends State<LiquidGlassBottomBar> {
 /// Supports both [IconData] and custom [Widget] (e.g., [SvgPicture]) for icons.
 /// You can use [icon] and [selectedIcon] with either [IconData] or [Widget],
 /// or use the explicit [iconWidget] and [selectedIconWidget] parameters.
-class LiquidGlassBottomBarTab {
+class LGBottomBarTab {
   /// Creates a bottom bar tab configuration.
   ///
   /// The [icon] and [selectedIcon] parameters accept both [IconData] and [Widget]
   /// (e.g., [SvgPicture]). Alternatively, you can use [iconWidget] and
   /// [selectedIconWidget] for explicit widget support.
-  const LiquidGlassBottomBarTab({
+  const LGBottomBarTab({
     required this.label,
     this.icon,
     this.selectedIcon,
@@ -777,31 +777,31 @@ class LiquidGlassBottomBarTab {
 
   /// Color of the label when this tab is selected.
   ///
-  /// If null, uses the [LiquidGlassBottomBar.selectedLabelColor] or
-  /// [LiquidGlassBottomBar.selectedIconColor] as fallback.
+  /// If null, uses the [LGBottomBar.selectedLabelColor] or
+  /// [LGBottomBar.selectedIconColor] as fallback.
   final Color? selectedLabelColor;
 
   /// Color of the label when this tab is not selected.
   ///
-  /// If null, uses the [LiquidGlassBottomBar.unselectedLabelColor] or
-  /// [LiquidGlassBottomBar.unselectedIconColor] as fallback.
+  /// If null, uses the [LGBottomBar.unselectedLabelColor] or
+  /// [LGBottomBar.unselectedIconColor] as fallback.
   final Color? unselectedLabelColor;
 }
 
-/// Configuration for the extra button in [LiquidGlassBottomBar].
+/// Configuration for the extra button in [LGBottomBar].
 ///
-/// The extra button is rendered as a [GlassButton] and typically used for
+/// The extra button is rendered as a [LGButton] and typically used for
 /// primary actions like creating new content.
 ///
 /// Supports both [IconData] and custom [Widget] (e.g., [SvgPicture]) for icons.
 /// You can use [icon] with either [IconData] or [Widget], or use the explicit
 /// [iconWidget] parameter.
-class GlassBottomBarExtraButton {
+class LGBottomBarExtraButton {
   /// Creates an extra button configuration.
   ///
   /// The [icon] parameter accepts both [IconData] and [Widget] (e.g., [SvgPicture]).
   /// Alternatively, you can use [iconWidget] for explicit widget support.
-  const GlassBottomBarExtraButton({
+  const LGBottomBarExtraButton({
     this.icon,
     this.iconWidget,
     required this.onTap,
@@ -854,7 +854,7 @@ class _BottomBarTab extends StatelessWidget {
     this.showLabel = true,
   });
 
-  final LiquidGlassBottomBarTab tab;
+  final LGBottomBarTab tab;
   final bool selected;
   final Color selectedIconColor;
   final Color unselectedIconColor;
@@ -970,7 +970,7 @@ class _BottomBarTab extends StatelessWidget {
   /// Builds the icon widget, supporting both IconData and custom Widget.
   Widget _buildIcon({
     required bool selected,
-    required LiquidGlassBottomBarTab tab,
+    required LGBottomBarTab tab,
     required Color iconColor,
     required double iconSize,
   }) {
@@ -1045,20 +1045,20 @@ class _BottomBarTab extends StatelessWidget {
   }
 }
 
-/// Internal widget that renders the extra button using [LiquidGlassButton].
+/// Internal widget that renders the extra button using [LGButton].
 class _ExtraButton extends StatelessWidget {
   const _ExtraButton({
     required this.config,
     required this.quality,
   });
 
-  final GlassBottomBarExtraButton config;
-  final LiquidGlassQuality quality;
+  final LGBottomBarExtraButton config;
+  final LGQuality quality;
 
   @override
   Widget build(BuildContext context) {
     if (config.iconWidget != null) {
-      return LiquidGlassButton.custom(
+      return LGButton.custom(
         onTap: config.onTap,
         label: config.label,
         width: config.size,
@@ -1069,7 +1069,7 @@ class _ExtraButton extends StatelessWidget {
     }
 
     if (config.icon == null) {
-      return LiquidGlassButton.custom(
+      return LGButton.custom(
         onTap: config.onTap,
         label: config.label,
         width: config.size,
@@ -1080,7 +1080,7 @@ class _ExtraButton extends StatelessWidget {
     }
 
     if (config.icon is Widget) {
-      return LiquidGlassButton.custom(
+      return LGButton.custom(
         onTap: config.onTap,
         label: config.label,
         width: config.size,
@@ -1089,7 +1089,7 @@ class _ExtraButton extends StatelessWidget {
         child: config.icon as Widget,
       );
     } else if (config.icon is IconData) {
-      return LiquidGlassButton(
+      return LGButton(
         icon: config.icon as IconData,
         onTap: config.onTap,
         label: config.label,
@@ -1099,7 +1099,7 @@ class _ExtraButton extends StatelessWidget {
       );
     }
 
-    return LiquidGlassButton.custom(
+    return LGButton.custom(
       onTap: config.onTap,
       label: config.label,
       width: config.size,
@@ -1128,20 +1128,20 @@ class _SearchWidget extends StatelessWidget {
     required this.barBorderRadius,
   });
 
-  final LiquidGlassBottomBarTab? searchTab;
+  final LGBottomBarTab? searchTab;
   final VoidCallback? onSearchTap;
   final Color selectedIconColor;
   final Color unselectedIconColor;
   final double iconSize;
   final TextStyle? textStyle;
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
   final double barHeight;
   final double barBorderRadius;
 
   @override
   Widget build(BuildContext context) {
     final tab = searchTab ??
-        const LiquidGlassBottomBarTab(
+        const LGBottomBarTab(
           label: '',
           icon: CupertinoIcons.search,
         );
@@ -1174,7 +1174,7 @@ class _SearchWidget extends StatelessWidget {
   }
 
   /// Builds the search icon widget, supporting both IconData and custom Widget.
-  Widget _buildSearchIcon(LiquidGlassBottomBarTab tab) {
+  Widget _buildSearchIcon(LGBottomBarTab tab) {
     if (tab.iconWidget != null) {
       return tab.iconWidget!;
     }
@@ -1222,7 +1222,7 @@ class _TabIndicator extends StatefulWidget {
   final LiquidGlassSettings? indicatorSettings;
   final LiquidGlassSettings barGlassSettings;
   final ValueChanged<int> onTabChanged;
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
   final double barHeight;
   final double barBorderRadius;
   final EdgeInsetsGeometry tabPadding;
@@ -1414,7 +1414,7 @@ class _TabIndicatorState extends State<_TabIndicator> {
                       ),
                     ),
                     if (thickness < 1)
-                      LiquidGlassIndicator(
+                      LGIndicator(
                         velocity: velocity,
                         itemCount: widget.tabCount,
                         alignment: alignment,
@@ -1427,7 +1427,7 @@ class _TabIndicatorState extends State<_TabIndicator> {
                         expansion: 14,
                       ),
                     if (thickness > 0)
-                      LiquidGlassIndicator(
+                      LGIndicator(
                         velocity: velocity,
                         itemCount: widget.tabCount,
                         alignment: alignment,

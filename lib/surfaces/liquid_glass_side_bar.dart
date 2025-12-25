@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 /// A beautiful vertical navigation sidebar following Apple's iOS design guidelines.
 ///
-/// [LiquidGlassSideBar] provides a floating, translucent navigation drawer or split-view
+/// [LGSideBar] provides a floating, translucent navigation drawer or split-view
 /// sidebar. It sits above or alongside content, providing a sense of depth and hierarchy.
 /// Features optional header and footer with a scrollable list of children in between.
-class LiquidGlassSideBar extends StatelessWidget {
+class LGSideBar extends StatelessWidget {
   /// Creates a glass sidebar.
-  const LiquidGlassSideBar({
+  const LGSideBar({
     required this.children,
     super.key,
     this.width = 280.0,
@@ -17,14 +17,14 @@ class LiquidGlassSideBar extends StatelessWidget {
     this.footer,
     this.glassSettings,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-    this.quality = LiquidGlassQuality.premium,
+    this.quality = LGQuality.premium,
     this.backgroundColor,
     this.border,
   });
 
   /// The navigation items to display in the sidebar.
   ///
-  /// Typically [GlassSideBarItem]s.
+  /// Typically [LGSideBarItem]s.
   final List<Widget> children;
 
   /// Width of the sidebar.
@@ -54,8 +54,8 @@ class LiquidGlassSideBar extends StatelessWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [GlassQuality.premium].
-  final LiquidGlassQuality quality;
+  /// Defaults to [LGQuality.premium].
+  final LGQuality quality;
 
   /// Optional background color override.
   ///
@@ -140,12 +140,12 @@ class LiquidGlassSideBar extends StatelessWidget {
   }
 }
 
-/// A list item designed for [LiquidGlassSideBar].
+/// A list item designed for [LGSideBar].
 ///
 /// Features a rounded design that highlights when selected, with a subtle glass effect.
-class GlassSideBarItem extends StatelessWidget {
+class LGSideBarItem extends StatelessWidget {
   /// Creates a sidebar item.
-  const GlassSideBarItem({
+  const LGSideBarItem({
     required this.icon,
     required this.label,
     required this.onTap,

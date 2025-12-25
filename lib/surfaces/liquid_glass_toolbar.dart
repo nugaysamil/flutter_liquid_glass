@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 
 /// A beautiful glass morphism toolbar following Apple's iOS design patterns.
 ///
-/// [LiquidGlassToolBar] provides a sophisticated bottom toolbar for actions,
+/// [LGToolBar] provides a sophisticated bottom toolbar for actions,
 /// utilizing the liquid glass material. It is typically used at the bottom
 /// of the screen to present a set of actions relevant to the current context.
-/// Unlike [LiquidGlassBottomBar] which is for navigation, this widget is for
+/// Unlike [LGBottomBar] which is for navigation, this widget is for
 /// actions (e.g., "Edit", "Share", "Delete").
-class LiquidGlassToolBar extends StatelessWidget {
+class LGToolBar extends StatelessWidget {
   /// Creates a glass toolbar.
-  const LiquidGlassToolBar({
+  const LGToolBar({
     required this.children,
     super.key,
     this.height = 44.0,
     this.alignment = MainAxisAlignment.spaceBetween,
     this.glassSettings,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    this.quality = LiquidGlassQuality.premium,
+    this.quality = LGQuality.premium,
     this.backgroundColor,
   });
 
   /// The action buttons to display in the toolbar.
   ///
-  /// Typically [GlassButton]s or [IconButton]s.
+  /// Typically [LGButton]s or [IconButton]s.
   /// Use [Spacer] widgets to control spacing between items if [alignment]
   /// is set to [MainAxisAlignment.spaceBetween] (the default).
   final List<Widget> children;
@@ -53,8 +53,8 @@ class LiquidGlassToolBar extends StatelessWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [GlassQuality.premium].
-  final LiquidGlassQuality quality;
+  /// Defaults to [LGQuality.premium].
+  final LGQuality quality;
 
   /// Optional background color override.
   ///

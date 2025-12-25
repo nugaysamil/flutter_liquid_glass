@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
-import 'package:flutter_liquid_glass/utils/indicator_physics.dart';
+import '../enum/liquid_glass_quality.dart';
+import '../utils/indicator_physics.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:motor/motor.dart';
 
 /// A shared component that renders the interactive "Jelly" indicator
-/// used in [GlassTabBar], [GlassSegmentedControl], and [GlassBottomBar].
+/// used in [LGTabBar], [LGSegmentedControl], and [LGBottomBar].
 ///
 /// Handles:
 /// - Jelly physics (squash and stretch)
 /// - Thickness-based crossfade between background and glass
 /// - Positioning and expansion
-class LiquidGlassIndicator extends StatelessWidget {
-  const LiquidGlassIndicator({
+class LGIndicator extends StatelessWidget {
+  const LGIndicator({
     super.key,
     required this.velocity,
     required this.itemCount,
@@ -42,7 +42,7 @@ class LiquidGlassIndicator extends StatelessWidget {
   final double thickness;
 
   /// Rendering quality (standard/premium).
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
 
   /// Base color for the indicator (used for background mode).
   final Color indicatorColor;
@@ -56,7 +56,7 @@ class LiquidGlassIndicator extends StatelessWidget {
   /// Optional glass settings override.
   final LiquidGlassSettings? glassSettings;
 
-  /// Padding to apply around the indicator (e.g., for GlassBottomBar).
+  /// Padding to apply around the indicator (e.g., for LGBottomBar).
   final EdgeInsetsGeometry padding;
 
   /// How much to expand the indicator during drag (default 8.0).

@@ -67,27 +67,27 @@ class _ExamplePageState extends State<ExamplePage> {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                child: LiquidGlassBottomBar(
+                child: LGBottomBar(
                   tabs: [
-                    const LiquidGlassBottomBarTab(
+                    const LGBottomBarTab(
                       label: 'Home',
                       icon: CupertinoIcons.house,
                       selectedIcon: CupertinoIcons.house_fill,
                       glowColor: Colors.white70,
                     ),
-                    const LiquidGlassBottomBarTab(
+                    const LGBottomBarTab(
                       label: 'Search',
                       icon: CupertinoIcons.search,
                       selectedIcon: CupertinoIcons.search,
                       glowColor: Colors.white60,
                     ),
-                    LiquidGlassBottomBarTab(
+                    LGBottomBarTab(
                       label: 'Favorites',
                       icon: CupertinoIcons.heart,
                       selectedIcon: CupertinoIcons.heart_fill,
                       glowColor: Colors.white.withValues(alpha: 0.8),
                     ),
-                    const LiquidGlassBottomBarTab(
+                    const LGBottomBarTab(
                       label: 'Profile',
                       icon: CupertinoIcons.person,
                       selectedIcon: CupertinoIcons.person_fill,
@@ -100,7 +100,7 @@ class _ExamplePageState extends State<ExamplePage> {
                       _selectedIndex = index;
                     });
                   },
-                  extraButton: GlassBottomBarExtraButton(
+                  extraButton: LGBottomBarExtraButton(
                     icon: CupertinoIcons.add_circled,
                     label: 'Create',
                     onTap: () {
@@ -151,8 +151,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-            const LiquidGlassCard(
-              quality: LiquidGlassQuality.premium,
+            const LGCard(
+              quality: LGQuality.premium,
               margin: EdgeInsets.only(bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,8 +175,8 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            const LiquidGlassCard(
-              quality: LiquidGlassQuality.standard,
+            const LGCard(
+              quality: LGQuality.standard,
               margin: EdgeInsets.only(bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,7 +199,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            const LiquidGlassContainer(
+            const LGContainer(
               useOwnLayer: true,
               settings: LiquidGlassSettings(
                 thickness: 20,
@@ -256,7 +256,7 @@ class SearchPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            LiquidGlassTextField(
+            LGTextField(
               placeholder: 'Search for anything...',
               prefixIcon: Icon(
                 CupertinoIcons.search,
@@ -267,7 +267,7 @@ class SearchPage extends StatelessWidget {
             const SizedBox(height: 30),
             ...List.generate(
               5,
-              (index) => LiquidGlassCard(
+              (index) => LGCard(
                 margin: const EdgeInsets.only(bottom: 16),
                 child: ListTile(
                   leading: CircleAvatar(
@@ -337,7 +337,7 @@ class FavoritesPage extends StatelessWidget {
               ),
               itemCount: 6,
               itemBuilder: (context, index) {
-                return LiquidGlassCard(
+                return LGCard(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -378,7 +378,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            LiquidGlassCard(
+            LGCard(
               child: Column(
                 children: [
                   CircleAvatar(
@@ -411,7 +411,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            LiquidGlassCard(
+            LGCard(
               margin: const EdgeInsets.only(bottom: 16),
               child: ListTile(
                 leading: const Icon(
@@ -428,7 +428,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            LiquidGlassCard(
+            LGCard(
               margin: const EdgeInsets.only(bottom: 16),
               child: ListTile(
                 leading: const Icon(
@@ -445,7 +445,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            LiquidGlassCard(
+            LGCard(
               margin: const EdgeInsets.only(bottom: 16),
               child: ListTile(
                 leading: const Icon(

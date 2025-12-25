@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 
 /// A beautiful glass morphism app bar following Apple's navigation bar design.
 ///
-/// [LiquidGlassAppBar] provides a blurred glass navigation bar with support for
+/// [LGAppBar] provides a blurred glass navigation bar with support for
 /// title, leading widget, and trailing actions, matching iOS design patterns.
 /// This widget implements [PreferredSizeWidget] for use in [Scaffold.appBar].
-class LiquidGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
+class LGAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Creates a glass app bar.
-  const LiquidGlassAppBar({
+  const LGAppBar({
     super.key,
     this.title,
     this.leading,
@@ -21,7 +21,7 @@ class LiquidGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 8),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.premium,
+    this.quality = LGQuality.premium,
   });
 
 
@@ -32,12 +32,12 @@ class LiquidGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// A widget to display before the [title].
   ///
-  /// Typically a [GlassButton] with a back arrow or menu icon.
+  /// Typically a [LGButton] with a back arrow or menu icon.
   final Widget? leading;
 
   /// Widgets to display in a row after the [title].
   ///
-  /// Typically [GlassButton] widgets for actions like search, share, etc.
+  /// Typically [LGButton] widgets for actions like search, share, etc.
   final List<Widget>? actions;
 
   /// Whether the [title] should be centered.
@@ -94,12 +94,12 @@ class LiquidGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [GlassQuality.premium] since app bars are typically static
+  /// Defaults to [LGQuality.premium] since app bars are typically static
   /// surfaces at the top of the screen where premium quality looks best.
   ///
-  /// Use [GlassQuality.standard] if the app bar will be used in a scrollable
+  /// Use [LGQuality.standard] if the app bar will be used in a scrollable
   /// context.
-  final LiquidGlassQuality quality;
+  final LGQuality quality;
 
   static const _appBarShape = LiquidRoundedRectangle(borderRadius: 0);
   static const _defaultSettings = LiquidGlassSettings(blur: 15);

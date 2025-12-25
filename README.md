@@ -2,16 +2,16 @@
 
 A beautiful Flutter package for creating stunning liquid glass morphism UI effects. Transform your Flutter apps with elegant, modern glassmorphism designs that blur the line between UI and reality.
 
-## ✨ Features
+## Features
 
-- 🎨 **Beautiful Glass Effects** - Create stunning liquid glass morphism UI components
-- 🚀 **High Performance** - Optimized rendering with quality presets
-- 🎯 **Flexible Components** - `LiquidGlassCard` and `LiquidGlassContainer` for all your needs
-- 🔧 **Customizable** - Fine-tune blur, thickness, and visual properties
-- 📱 **Cross-Platform** - Works seamlessly on iOS, Android, Web, and Desktop
-- 🎭 **Grouped or Standalone** - Use shared glass layers or independent effects
+- **Beautiful Glass Effects** - Create stunning liquid glass morphism UI components
+- **High Performance** - Optimized rendering with quality presets
+- **Flexible Components** - `LGCard` and `LGContainer` for all your needs
+- **Customizable** - Fine-tune blur, thickness, and visual properties
+- **Cross-Platform** - Works seamlessly on iOS, Android, Web, and Desktop
+- **Grouped or Standalone** - Use shared glass layers or independent effects
 
-## 📦 Installation
+## Installation
 
 Add this to your package's `pubspec.yaml` file:
 
@@ -26,15 +26,14 @@ Then run:
 flutter pub get
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Basic Usage
 
 Wrap your app with a `LiquidGlassLayer` to enable glass effects:
 
 ```dart
-import 'package:flutter_liquid_glass/components/box/liquid_glass_card.dart';
-import 'package:flutter_liquid_glass/components/box/liquid_glass_container.dart';
+import 'package:flutter_liquid_glass/flutter_liquid_glass.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 LiquidGlassLayer(
@@ -46,13 +45,13 @@ LiquidGlassLayer(
 )
 ```
 
-### Using LiquidGlassCard
+### Using LGCard
 
 Create beautiful glass cards with default styling:
 
 ```dart
-LiquidGlassCard(
-  quality: LiquidGlassQuality.premium,
+LGCard(
+  quality: LGQuality.premium,
   margin: const EdgeInsets.only(bottom: 16),
   child: ListTile(
     leading: Icon(Icons.star, color: Colors.white),
@@ -62,12 +61,12 @@ LiquidGlassCard(
 )
 ```
 
-### Using LiquidGlassContainer
+### Using LGContainer
 
 Create flexible glass containers with custom dimensions:
 
 ```dart
-LiquidGlassContainer(
+LGContainer(
   width: double.infinity,
   height: 150,
   padding: const EdgeInsets.all(16),
@@ -79,9 +78,9 @@ LiquidGlassContainer(
 )
 ```
 
-## 🎯 Standalone Container with Custom Layer
+## Standalone Container with Custom Layer
 
-One of the most powerful features of `LiquidGlassContainer` is the ability to create **standalone containers** with their own independent glass layer. This is perfect when you want a container to have unique glass effect settings that differ from the parent layer.
+One of the most powerful features of `LGContainer` is the ability to create **standalone containers** with their own independent glass layer. This is perfect when you want a container to have unique glass effect settings that differ from the parent layer.
 
 ### When to Use Standalone Containers
 
@@ -99,7 +98,7 @@ Here's a complete example showing how to create a standalone container with cust
 
 ```dart
 
-LiquidGlassContainer(
+LGContainer(
   // Enable standalone mode - creates its own glass layer
   useOwnLayer: true,
   
@@ -152,7 +151,7 @@ LiquidGlassContainer(
 **Grouped (default):**
 ```dart
 // Uses parent LiquidGlassLayer settings
-LiquidGlassContainer(
+LGContainer(
   child: Text('Uses parent glass layer'),
 )
 ```
@@ -160,14 +159,14 @@ LiquidGlassContainer(
 **Standalone:**
 ```dart
 // Creates its own layer with custom settings
-LiquidGlassContainer(
+LGContainer(
   useOwnLayer: true,
   settings: const LiquidGlassSettings(thickness: 20, blur: 10),
   child: Text('Has its own glass layer'),
 )
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Quality Presets
 
@@ -175,14 +174,14 @@ Choose between performance and visual quality:
 
 ```dart
 // Standard quality - optimized for performance
-LiquidGlassCard(
-  quality: LiquidGlassQuality.standard,
+LGCard(
+  quality: LGQuality.standard,
   child: YourContent(),
 )
 
 // Premium quality - maximum visual fidelity
-LiquidGlassCard(
-  quality: LiquidGlassQuality.premium,
+LGCard(
+  quality: LGQuality.premium,
   child: YourContent(),
 )
 ```
@@ -192,15 +191,15 @@ LiquidGlassCard(
 Customize the shape of your glass components:
 
 ```dart
-LiquidGlassCard(
+LGCard(
   shape: LiquidRoundedRectangle(borderRadius: 8),
   child: YourContent(),
 )
 ```
 
-## 📚 API Reference
+## API Reference
 
-### LiquidGlassContainer
+### LGContainer
 
 A flexible container widget with configurable glass effects.
 
@@ -215,7 +214,7 @@ A flexible container widget with configurable glass effects.
 - `quality` - Rendering quality preset
 - `alignment` - Child alignment within container
 
-### LiquidGlassCard
+### LGCard
 
 A card widget with iOS-style design defaults.
 
@@ -228,7 +227,7 @@ A card widget with iOS-style design defaults.
 - `useOwnLayer` - Whether to create its own layer
 - `quality` - Rendering quality preset
 
-## 🎯 Use Cases
+## Use Cases
 
 - **Modern Dashboards** - Create elegant data visualization interfaces
 - **Settings Screens** - Beautiful, organized settings panels
@@ -237,18 +236,14 @@ A card widget with iOS-style design defaults.
 - **Navigation Panels** - Sleek sidebar navigation
 - **Onboarding Screens** - Engaging first-impression experiences
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+## License
 
 This project is licensed under the terms specified in the LICENSE file.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built with [liquid_glass_renderer](https://pub.dev/packages/liquid_glass_renderer) for the core rendering engine.
-
----
-
-Made with ❤️ for the Flutter community

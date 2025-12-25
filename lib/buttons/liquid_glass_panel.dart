@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/components/box/liquid_glass_container.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import 'liquid_glass_container.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 /// A beautiful glass panel widget for larger surface areas following Apple's design.
 ///
-/// [LiquidGlassPanel] builds upon [LiquidGlassContainer] with styling optimized for
+/// [LGPanel] builds upon [LGContainer] with styling optimized for
 /// larger content areas, modal surfaces, and full-screen containers. Features
 /// default padding of 24px and rounded superellipse corners with 20px radius,
 /// making it perfect for modal dialogs, settings panels, and detail views.
-class LiquidGlassPanel extends StatelessWidget {
+class LGPanel extends StatelessWidget {
   /// Creates a glass panel.
-  const LiquidGlassPanel({
+  const LGPanel({
     super.key,
     this.child,
     this.padding = const EdgeInsets.all(24),
@@ -19,7 +19,7 @@ class LiquidGlassPanel extends StatelessWidget {
     this.shape = const LiquidRoundedSuperellipse(borderRadius: 20),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.clipBehavior = Clip.none,
     this.width,
     this.height,
@@ -87,11 +87,11 @@ class LiquidGlassPanel extends StatelessWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [GlassQuality.standard], which uses backdrop filter rendering.
+  /// Defaults to [LGQuality.standard], which uses backdrop filter rendering.
   /// This works reliably in all contexts, including scrollable lists.
   ///
-  /// Use [GlassQuality.premium] for shader-based glass in static layouts only.
-  final LiquidGlassQuality quality;
+  /// Use [LGQuality.premium] for shader-based glass in static layouts only.
+  final LGQuality quality;
 
   /// The clipping behavior for the panel.
   ///
@@ -108,7 +108,7 @@ class LiquidGlassPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LiquidGlassContainer(
+    return LGContainer(
       width: width,
       height: height,
       padding: padding,

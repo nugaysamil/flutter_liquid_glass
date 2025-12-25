@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 
 /// A beautiful glass morphism text field inspired by Apple's input design.
 ///
-/// [LiquidGlassTextField] provides a text input field with elegant liquid glass effects,
+/// [LGTextField] provides a text input field with elegant liquid glass effects,
 /// matching iOS design patterns. Supports both grouped mode (sharing glass settings
 /// with other elements) and standalone mode (with its own independent glass layer).
 /// Includes support for prefix/suffix icons, multiline input, and full customization
 /// of styling and behavior.
-class LiquidGlassTextField extends StatefulWidget {
+class LGTextField extends StatefulWidget {
   /// Creates a glass text field.
-  const LiquidGlassTextField({
+  const LGTextField({
     super.key,
     this.controller,
     this.focusNode,
@@ -40,7 +40,7 @@ class LiquidGlassTextField extends StatefulWidget {
     this.shape = const LiquidRoundedSuperellipse(borderRadius: 10),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
   });
 
   // ===========================================================================
@@ -154,16 +154,16 @@ class LiquidGlassTextField extends StatefulWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [LiquidGlassQuality.standard], which uses backdrop filter rendering.
+  /// Defaults to [LGQuality.standard], which uses backdrop filter rendering.
   /// Works reliably in all contexts, including scrollable lists. Use
-  /// [LiquidGlassQuality.premium] for shader-based glass in static layouts only.
-  final LiquidGlassQuality quality;
+  /// [LGQuality.premium] for shader-based glass in static layouts only.
+  final LGQuality quality;
 
   @override
-  State<LiquidGlassTextField> createState() => _LiquidGlassTextFieldState();
+  State<LGTextField> createState() => _LGTextFieldState();
 }
 
-class _LiquidGlassTextFieldState extends State<LiquidGlassTextField> {
+class _LGTextFieldState extends State<LGTextField> {
   late FocusNode _focusNode;
 
   @override

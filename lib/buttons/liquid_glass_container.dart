@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/enum/liquid_glass_quality.dart';
+import '../enum/liquid_glass_quality.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 /// A foundational glass container widget following Apple's liquid glass design.
@@ -8,9 +8,9 @@ import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 /// provides a simple glass surface with configurable dimensions, padding,
 /// and shape. Supports both grouped mode (shares parent layer) and standalone
 /// mode (creates its own layer).
-class LiquidGlassContainer extends StatelessWidget {
+class LGContainer extends StatelessWidget {
   /// Creates a glass container.
-  const LiquidGlassContainer({
+  const LGContainer({
     super.key,
     this.child,
     this.width,
@@ -20,7 +20,7 @@ class LiquidGlassContainer extends StatelessWidget {
     this.shape = const LiquidRoundedSuperellipse(borderRadius: 16),
     this.settings,
     this.useOwnLayer = false,
-    this.quality = LiquidGlassQuality.standard,
+    this.quality = LGQuality.standard,
     this.clipBehavior = Clip.none,
     this.alignment,
   });
@@ -87,11 +87,11 @@ class LiquidGlassContainer extends StatelessWidget {
 
   /// Rendering quality for the glass effect.
   ///
-  /// Defaults to [GlassQuality.standard], which uses backdrop filter rendering.
+  /// Defaults to [LGQuality.standard], which uses backdrop filter rendering.
   /// This works reliably in all contexts, including scrollable lists.
   ///
-  /// Use [GlassQuality.premium] for shader-based glass in static layouts only.
-  final LiquidGlassQuality quality;
+  /// Use [LGQuality.premium] for shader-based glass in static layouts only.
+  final LGQuality quality;
 
   /// The clipping behavior for the container.
   ///
