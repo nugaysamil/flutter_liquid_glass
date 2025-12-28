@@ -11,13 +11,25 @@ A beautiful Flutter package for creating stunning liquid glass morphism UI effec
 - **Cross-Platform** - Works seamlessly on iOS, Android, Web, and Desktop
 - **Grouped or Standalone** - Use shared glass layers or independent effects
 
+## Preview
+
+<!-- Add your preview videos here -->
+<!-- Example format: -->
+<!-- 
+### Demo Video
+![Demo](path/to/your/video.gif)
+
+### Features Showcase
+![Features](path/to/features/video.gif)
+-->
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_liquid_glass_plus: ^0.0.1
+  flutter_liquid_glass_plus: ^0.0.2
 ```
 
 Then run:
