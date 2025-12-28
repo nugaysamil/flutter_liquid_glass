@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_liquid_glass/flutter_liquid_glass.dart';
+import 'package:flutter_liquid_glass_plus/buttons/liquid_glass_switch.dart';
+import 'package:flutter_liquid_glass_plus/flutter_liquid_glass.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+final List<Widget> pages = [
+  HomeContent(),
+  SecondPage(),
+  ProfilePage(),
+];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,354 +22,410 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Liquid Glass Example',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
+        textTheme: GoogleFonts.aBeeZeeTextTheme().apply(
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
+        ),
         useMaterial3: true,
       ),
-      home: const ExamplePage(),
+      home: const HomePage(),
     );
   }
 }
 
-class ExamplePage extends StatefulWidget {
-  const ExamplePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<ExamplePage> createState() => _ExamplePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _ExamplePageState extends State<ExamplePage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    const HomePage(),
-    const SearchPage(),
-    const FavoritesPage(),
-    const ProfilePage(),
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.black,
-              Colors.grey.shade900,
-              Colors.black87,
-            ],
-          ),
-        ),
-        child: LiquidGlassLayer(
-          settings: const LiquidGlassSettings(
-            thickness: 30,
-            blur: 30,
-            refractiveIndex: 1.59,
-          ),
-          child: Stack(
-            children: [
-              _pages[_selectedIndex],
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: LGBottomBar(
-                  tabs: [
-                    const LGBottomBarTab(
-                      label: 'Home',
-                      icon: CupertinoIcons.house,
-                      selectedIcon: CupertinoIcons.house_fill,
-                      glowColor: Colors.white70,
+    return LiquidGlassLayer(
+      settings: const LiquidGlassSettings(
+        thickness: 30,
+        blur: 1,
+      ),
+      child: Scaffold(
+        extendBody: true,
+        appBar: LGAppBar(
+          backgroundColor: Colors.black38.withValues(alpha: 0.7),
+          leading: IconButton(
+            icon: const Icon(Icons.menu, color: Colors.black),
+            onPressed: () {
+              LGSheet.show(
+                context: context,
+                builder: (context) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      leading: const Icon(Icons.home, color: Colors.black),
+                      title: const Text(
+                        'Home',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onTap: () => Navigator.pop(context),
                     ),
-                    const LGBottomBarTab(
-                      label: 'Search',
-                      icon: CupertinoIcons.search,
-                      selectedIcon: CupertinoIcons.search,
-                      glowColor: Colors.white60,
+                    ListTile(
+                      leading: const Icon(Icons.search, color: Colors.black),
+                      title: const Text(
+                        'Search',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onTap: () => Navigator.pop(context),
                     ),
-                    LGBottomBarTab(
-                      label: 'Favorites',
-                      icon: CupertinoIcons.heart,
-                      selectedIcon: CupertinoIcons.heart_fill,
-                      glowColor: Colors.white.withValues(alpha: 0.8),
+                    ListTile(
+                      leading: const Icon(Icons.person, color: Colors.black),
+                      title: const Text(
+                        'Profile',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onTap: () => Navigator.pop(context),
                     ),
-                    const LGBottomBarTab(
-                      label: 'Profile',
-                      icon: CupertinoIcons.person,
-                      selectedIcon: CupertinoIcons.person_fill,
-                      glowColor: Colors.white,
+                    ListTile(
+                      leading: const Icon(Icons.settings, color: Colors.black),
+                      title: const Text(
+                        'Settings',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onTap: () => Navigator.pop(context),
                     ),
                   ],
-                  selectedIndex: _selectedIndex,
-                  onTabSelected: (index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  extraButton: LGBottomBarExtraButton(
-                    icon: CupertinoIcons.add_circled,
-                    label: 'Create',
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Create button tapped!'),
-                          duration: Duration(seconds: 1),
-                        ),
-                      );
-                    },
-                  ),
                 ),
-              ),
-            ],
+                settings: const LiquidGlassSettings(
+                  thickness: 40,
+                  blur: 20,
+                  glassColor: Color.fromARGB(150, 255, 255, 255),
+                ),
+              );
+            },
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search, color: Colors.black),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon:
+                  const Icon(Icons.notifications_outlined, color: Colors.black),
+              onPressed: () {},
+            ),
+          ],
+          useOwnLayer: true,
+          settings: const LiquidGlassSettings(
+            thickness: 1,
+            blur: 50,
+            glassColor: Color.fromARGB(147, 205, 179, 179),
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.grey.shade50,
+                Colors.grey.shade100,
+                Colors.grey.shade200,
+              ],
+            ),
+          ),
+          child: AppPages(index: _selectedIndex),
+        ),
+        bottomNavigationBar: AppBottomBar(
+          index: _selectedIndex,
+          onTabSelected: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
         ),
       ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class AppPages extends StatelessWidget {
+  const AppPages({required this.index, super.key});
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return pages[index];
+  }
+}
+
+class HomeContent extends StatefulWidget {
+  const HomeContent({super.key});
+
+  @override
+  State<HomeContent> createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+  bool _switchValue = false;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Welcome Back',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          const SizedBox(height: 100),
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
-            const SizedBox(height: 8),
-            Text(
-              'Discover beautiful glass effects',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white.withValues(alpha: 0.7),
-              ),
-            ),
-            const SizedBox(height: 40),
-            const LGCard(
-              quality: LGQuality.premium,
-              margin: EdgeInsets.only(bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            color: Colors.black,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.star, color: Colors.white, size: 32),
-                  SizedBox(height: 12),
-                  Text(
-                    'Premium Quality',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Experience the best glass morphism effects with premium rendering quality.',
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                ],
-              ),
-            ),
-            const LGCard(
-              quality: LGQuality.standard,
-              margin: EdgeInsets.only(bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(Icons.speed, color: Colors.white, size: 32),
-                  SizedBox(height: 12),
-                  Text(
-                    'Optimized Performance',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Smooth animations and optimized rendering for better performance.',
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                ],
-              ),
-            ),
-            const LGContainer(
-              useOwnLayer: true,
-              settings: LiquidGlassSettings(
-                thickness: 20,
-                blur: 10,
-              ),
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Icon(Icons.layers, color: Colors.white, size: 32),
-                  SizedBox(height: 8),
-                  Text(
-                    'Standalone Container',
+                  const Text(
+                    'Toggle Switch',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Uses its own layer with custom settings',
-                    style: TextStyle(color: Colors.white70),
-                    textAlign: TextAlign.center,
+                  LGSwitch(
+                    value: _switchValue,
+                    onChanged: (value) {
+                      setState(() {
+                        _switchValue = value;
+                      });
+                    },
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 100),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Search',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+          ),
+          const SizedBox(height: 40),
+          ...List.generate(
+            20,
+            (index) => Card(
+              margin: EdgeInsets.only(
+                bottom: index == 19 ? 120 : 16,
+                left: 16,
+                right: 16,
               ),
-            ),
-            const SizedBox(height: 20),
-            LGTextField(
-              placeholder: 'Search for anything...',
-              prefixIcon: Icon(
-                CupertinoIcons.search,
-                size: 20,
-                color: Colors.white.withValues(alpha: 0.7),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-            ),
-            const SizedBox(height: 30),
-            ...List.generate(
-              5,
-              (index) => LGCard(
-                margin: const EdgeInsets.only(bottom: 16),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white.withValues(alpha: 0.2),
-                    child: const Icon(
-                      CupertinoIcons.music_note,
-                      color: Colors.white,
+              color: Colors.white,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Colors.grey.shade200,
+                    width: 1,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Icon(
+                            Icons.music_note,
+                            color: Colors.white,
+                            size: 32,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Card ${index + 1}',
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Beautiful glass design',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black.withValues(alpha: 0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  title: Text(
-                    'Search Result ${index + 1}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  subtitle: Text(
-                    'Tap to view details',
-                    style:
-                        TextStyle(color: Colors.white.withValues(alpha: 0.7)),
-                  ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'This card demonstrates the beautiful transparency effect of the bottom navigation bar. Scroll down to see the glass effect blend with the content.',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black.withValues(alpha: 0.8),
+                        height: 1.6,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(height: 100),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({super.key});
+class SecondPage extends StatefulWidget {
+  const SecondPage({super.key});
 
+  @override
+  State<SecondPage> createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Favorites',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          ...List.generate(
+            15,
+            (index) => Card(
+              margin: EdgeInsets.only(
+                bottom: index == 14 ? 120 : 20,
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Your saved items',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white.withValues(alpha: 0.7),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
-            const SizedBox(height: 30),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 0.85,
-              ),
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return LGCard(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        CupertinoIcons.heart_fill,
-                        color: Colors.white,
-                        size: 40,
+              color: Colors.white,
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.grey.shade200,
+                    width: 1,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Icon(
+                            Icons.star_rounded,
+                            color: Colors.white,
+                            size: 32,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'Card ${index + 1}',
+                                      style: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: const Text(
+                                      'New',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        letterSpacing: 1,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                'Beautiful glass morphism design',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black.withValues(alpha: 0.7),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'Item ${index + 1}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      child: Text(
+                        'This is a sample card with gradient background that allows you to see the transparency of the bottom bar when scrolling.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black.withValues(alpha: 0.8),
+                          height: 1.6,
+                          letterSpacing: 0.3,
                         ),
                       ),
-                    ],
-                  ),
-                );
-              },
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 100),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -373,99 +437,129 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            LGCard(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          Card(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            color: Colors.white,
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.grey.shade200,
+                  width: 1,
+                ),
+              ),
               child: Column(
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.white.withValues(alpha: 0.2),
+                    backgroundColor: Colors.black,
                     child: const Icon(
-                      CupertinoIcons.person_fill,
-                      size: 50,
+                      Icons.person,
+                      size: 60,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   const Text(
-                    'John Doe',
+                    'Profile',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Text(
-                    'john.doe@example.com',
+                    'Welcome to your profile',
                     style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white.withValues(alpha: 0.7),
+                      fontSize: 16,
+                      color: Colors.black.withValues(alpha: 0.7),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-            LGCard(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: ListTile(
-                leading: const Icon(
-                  CupertinoIcons.settings,
-                  color: Colors.white,
-                ),
-                title: const Text(
-                  'Settings',
-                  style: TextStyle(color: Colors.white),
-                ),
-                trailing: Icon(
-                  CupertinoIcons.chevron_right,
-                  color: Colors.white.withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-            LGCard(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: ListTile(
-                leading: const Icon(
-                  CupertinoIcons.bell,
-                  color: Colors.white,
-                ),
-                title: const Text(
-                  'Notifications',
-                  style: TextStyle(color: Colors.white),
-                ),
-                trailing: Icon(
-                  CupertinoIcons.chevron_right,
-                  color: Colors.white.withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-            LGCard(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: ListTile(
-                leading: const Icon(
-                  CupertinoIcons.info,
-                  color: Colors.white,
-                ),
-                title: const Text(
-                  'About',
-                  style: TextStyle(color: Colors.white),
-                ),
-                trailing: Icon(
-                  CupertinoIcons.chevron_right,
-                  color: Colors.white.withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-            const SizedBox(height: 100),
-          ],
-        ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class AppBottomBar extends StatelessWidget {
+  const AppBottomBar({
+    required this.index,
+    required this.onTabSelected,
+    super.key,
+  });
+
+  final int index;
+  final ValueChanged<int> onTabSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          child: Row(
+            children: [
+              Expanded(
+                child: LGBottomBar(
+                  showLabel: false,
+                  isSearch: true,
+                  glassSettings: const LiquidGlassSettings(
+                    thickness: 40,
+                    blur: 5,
+                    glassColor: Color.fromARGB(100, 255, 255, 255),
+                  ),
+                  searchTab: const LGBottomBarTab(
+                    label: '',
+                    icon: Icon(Icons.search, color: Colors.black),
+                  ),
+                  onSearchTap: () {},
+                  searchCloseIcon: const Icon(Icons.close, color: Colors.black),
+                  onSearchChanged: (query) {},
+                  indicatorColor: Colors.black12,
+                  searchPlaceholderStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
+                  selectedIconColor: Colors.white,
+                  unselectedIconColor: Colors.red,
+                  selectedLabelColor: Colors.white,
+                  unselectedLabelColor: Colors.red,
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
+                  onSearchSubmitted: (query) {},
+                  searchPlaceholder: 'Search apps, games, and more',
+                  tabs: const [
+                    LGBottomBarTab(label: 'Home', icon: Icon(Icons.home)),
+                    LGBottomBarTab(
+                        label: 'Search', icon: Icon(Icons.search_rounded)),
+                    LGBottomBarTab(label: 'Profile', icon: Icon(Icons.person)),
+                  ],
+                  selectedIndex: index,
+                  onTabSelected: onTabSelected,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

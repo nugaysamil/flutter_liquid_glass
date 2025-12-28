@@ -8,5 +8,7 @@ export 'components/box/liquid_glass_container.dart';
 export 'entry/liquid_glass_text_field.dart';
 export 'enum/liquid_button_style.dart';
 export 'enum/liquid_glass_quality.dart';
+export 'overlays/liquid_glass_sheet.dart';
+export 'surfaces/liquid_glass_appbar.dart';
 export 'surfaces/liquid_glass_bottom_bar.dart';
 export 'utils/indicator_physics.dart';
