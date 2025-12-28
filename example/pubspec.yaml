@@ -1,5 +1,5 @@
-name: flutter_liquid_glass_example
-description: Example app demonstrating flutter_liquid_glass package
+name: flutter_liquid_glass_plus_example
+description: Example app demonstrating flutter_liquid_glass_plus package
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_liquid_glass:
+  flutter_liquid_glass_plus:
     path: ../
 
 dev_dependencies:
