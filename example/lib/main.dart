@@ -9,9 +9,9 @@ void main() {
 }
 
 final List<Widget> pages = [
-  HomeContent(),
-  SecondPage(),
-  ProfilePage(),
+  const HomeContent(),
+  const SecondPage(),
+  const ProfilePage(),
 ];
 
 class MyApp extends StatelessWidget {
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Liquid Glass Example',
       theme: ThemeData(
         textTheme: GoogleFonts.aBeeZeeTextTheme().apply(
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     return LiquidGlassLayer(
       settings: const LiquidGlassSettings(
         thickness: 30,
-        blur: 1,
+        blur: 20,
       ),
       child: Scaffold(
         extendBody: true,
@@ -178,7 +179,7 @@ class _HomeContentState extends State<HomeContent> {
         children: [
           const SizedBox(height: 100),
           Card(
-            elevation: 2,
+            elevation: 5,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -341,7 +342,7 @@ class _SecondPageState extends State<SecondPage> {
                           width: 60,
                           height: 60,
                           decoration: BoxDecoration(
-                            color: Colors.black,
+                            color: Colors.grey,
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: const Icon(
@@ -374,7 +375,7 @@ class _SecondPageState extends State<SecondPage> {
                                       vertical: 4,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Colors.black,
+                                      color: Colors.red,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: const Text(
@@ -518,7 +519,7 @@ class AppBottomBar extends StatelessWidget {
                   showLabel: false,
                   isSearch: true,
                   glassSettings: const LiquidGlassSettings(
-                    thickness: 40,
+                    thickness: 45,
                     blur: 5,
                     glassColor: Color.fromARGB(100, 255, 255, 255),
                   ),
@@ -542,14 +543,13 @@ class AppBottomBar extends StatelessWidget {
                   textStyle: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
                   ),
                   onSearchSubmitted: (query) {},
                   searchPlaceholder: 'Search apps, games, and more',
                   tabs: const [
                     LGBottomBarTab(label: 'Home', icon: Icon(Icons.home)),
                     LGBottomBarTab(
-                        label: 'Search', icon: Icon(Icons.search_rounded)),
+                        label: 'Search', icon: Icon(Icons.star)),
                     LGBottomBarTab(label: 'Profile', icon: Icon(Icons.person)),
                   ],
                   selectedIndex: index,
